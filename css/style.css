@@ -2,15 +2,16 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --asfalto: #111110;
-  --asfalto-2: #191917;
-  --asfalto-3: #23231f;
-  --cal: #f4f1e8;
-  --cinza: #a29e92;
-  --acido: #c8f031;
-  --acido-escuro: #9fc21a;
-  --linha: rgba(244, 241, 232, 0.14);
-  --linha-forte: rgba(244, 241, 232, 0.32);
+  /* preto e branco fortes: --acido virou o branco puro de destaque (o nome ficou pelo histórico) */
+  --asfalto: #0a0a0a;
+  --asfalto-2: #141414;
+  --asfalto-3: #1f1f1f;
+  --cal: #f2f2f0;
+  --cinza: #9b9b9b;
+  --acido: #ffffff;
+  --acido-escuro: #d6d6d6;
+  --linha: rgba(255, 255, 255, 0.14);
+  --linha-forte: rgba(255, 255, 255, 0.34);
 
   --f-tag: "Sedgwick Ave Display", "Unbounded", system-ui, sans-serif;
   --f-titulo: "Unbounded", system-ui, sans-serif;
@@ -50,8 +51,8 @@ button { font: inherit; color: inherit; }
   background-color: var(--asfalto);
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 .95 0 0 0 .11 -.02'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E"),
-    radial-gradient(120% 70% at 50% 0%, #1d1d1a 0%, transparent 60%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .11 -.02'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 70% at 50% 0%, #1c1c1c 0%, transparent 60%);
   background-size: 220px 220px, 900px 900px, 100% 100%;
 }
 /* tags apagadas no muro: ficam quase invisíveis, como parede repintada */
@@ -61,7 +62,7 @@ button { font: inherit; color: inherit; }
 }
 .muro__ghost--1 { font-size: 44vw; top: 6vh; left: -10vw; transform: rotate(-8deg); }
 .muro__ghost--2 { font-size: 22vw; top: 52vh; right: -6vw; transform: rotate(6deg); }
-.muro__ghost--3 { font-size: 16vw; bottom: 4vh; left: 4vw; transform: rotate(-3deg); color: var(--acido); opacity: .05; }
+.muro__ghost--3 { font-size: 16vw; bottom: 4vh; left: 4vw; transform: rotate(-3deg); }
 .muro__spray { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 /* ---------- Layout ---------- */
@@ -137,7 +138,7 @@ p { margin: 0 0 1em; }
 /* ---------- Header ---------- */
 .header {
   position: sticky; top: 0; z-index: 50; height: var(--header-h);
-  background: rgba(17, 17, 16, .82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, .82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--linha);
 }
 .header .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -176,7 +177,7 @@ p { margin: 0 0 1em; }
 .menu-open .header { background: transparent; border-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .menu__list { list-style: none; margin: 0; padding: 0; }
 .menu__link {
-  display: block; padding: 10px 0; border-bottom: 2px solid rgba(17, 17, 16, .16);
+  display: block; padding: 10px 0; border-bottom: 2px solid rgba(10, 10, 10, .16);
   font: 400 clamp(2.3rem, 12vw, 3.6rem)/1.05 var(--f-tag); text-decoration: none;
   opacity: 0; transform: translateY(18px);
   transition: opacity .4s var(--ease), transform .5s var(--ease), padding-left .3s var(--ease);
@@ -218,7 +219,7 @@ p { margin: 0 0 1em; }
 /* selo de prêmio */
 .selo {
   display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; padding: 8px 12px;
-  border: 1px solid var(--linha-forte); background: rgba(17, 17, 16, .6);
+  border: 1px solid var(--linha-forte); background: rgba(10, 10, 10, .6);
   font: 500 .7rem/1.35 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; text-align: left;
 }
 .selo svg { width: 18px; height: 18px; color: var(--acido); flex: none; }
@@ -298,7 +299,7 @@ p { margin: 0 0 1em; }
 }
 .estilo__tag small { display: block; background: var(--asfalto); color: var(--cal); font: 700 .58rem/1 var(--f-titulo); letter-spacing: .2em; padding: 5px 8px 4px; text-align: center; }
 .estilo__tag span { display: block; padding: 6px 8px 4px; font: 400 clamp(1.3rem, 6vw, 1.8rem)/1 var(--f-tag); text-align: center; transition: color .3s var(--ease); }
-.estilo:hover .estilo__tag span { color: #4b5d0a; }
+.estilo:hover .estilo__tag span { color: #555; }
 .estilo__desc { padding: 14px; font-size: .92rem; color: var(--cinza); margin: 0; }
 
 /* ---------- Placeholder de foto ---------- */
@@ -306,7 +307,7 @@ p { margin: 0 0 1em; }
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   width: 100%; height: 100%; min-height: 160px; padding: 16px; text-align: center;
   background:
-    repeating-linear-gradient(-45deg, transparent 0 14px, rgba(200, 240, 49, .06) 14px 15px),
+    repeating-linear-gradient(-45deg, transparent 0 14px, rgba(255, 255, 255, .06) 14px 15px),
     var(--asfalto-3);
   color: var(--cinza); font: 500 .7rem/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase;
 }
@@ -477,7 +478,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .page-head .lead { margin-top: 16px; }
 
 /* ---------- Footer ---------- */
-.footer { border-top: 1px solid var(--linha); padding: 48px 0 92px; background: rgba(13, 13, 12, .78); }
+.footer { border-top: 1px solid var(--linha); padding: 48px 0 92px; background: rgba(8, 8, 8, .82); }
 .footer__grid { display: grid; gap: 30px; }
 .footer__brand img { width: 150px; height: auto; }
 .footer__brand p { margin: 14px 0 0; color: var(--cinza); font-size: .92rem; max-width: 34ch; }
@@ -489,16 +490,19 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .footer__bottom a { color: var(--cal); text-decoration: none; border-bottom: 1px solid var(--linha-forte); transition: color .3s var(--ease), border-color .3s var(--ease); }
 .footer__bottom a:hover { color: var(--acido); border-color: var(--acido); }
 
-/* WhatsApp flutuante */
-.wa-float {
-  position: fixed; right: 14px; bottom: 14px; z-index: 40; width: 54px; height: 54px;
-  display: grid; place-items: center; background: var(--acido); color: var(--asfalto); border: 2px solid var(--asfalto);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .45);
-  transform: translateY(90px); transition: transform .5s var(--ease);
+/* Orçamento flutuante (substitui o WhatsApp chamativo) */
+.orc-float {
+  position: fixed; right: 14px; bottom: 14px; z-index: 40; display: inline-flex; align-items: center; gap: 10px;
+  min-height: 50px; padding: 0 20px; background: var(--cal); color: var(--asfalto); border: 2px solid var(--asfalto);
+  font: 700 .74rem/1 var(--f-titulo); letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .55);
+  transform: translateY(110px); transition: transform .5s var(--ease), background-color .3s var(--ease), color .3s var(--ease);
 }
-.wa-float.is-on { transform: none; }
-.wa-float svg { width: 26px; height: 26px; }
-.wa-float:active { transform: scale(.94); }
+.orc-float::after { content: "→"; font-family: var(--f-mono); transition: transform .3s var(--ease); }
+.orc-float.is-on { transform: none; }
+.orc-float:hover { background: var(--asfalto); color: var(--cal); border-color: var(--cal); }
+.orc-float:hover::after { transform: translateX(4px); }
+.orc-float:active { transform: scale(.96); }
 
 /* ---------- 404 ---------- */
 .nf { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 0; }
@@ -549,7 +553,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
   .lightbox__bar { width: 100%; }
   .lightbox__img { flex: 1 1 60%; height: calc(100% - 66px); }
   .lightbox__info { flex: 0 0 340px; align-content: center; padding-right: 32px; }
-  .wa-float { right: 24px; bottom: 24px; }
+  .orc-float { right: 24px; bottom: 24px; }
   .footer { padding-bottom: 28px; }
 }
 
@@ -558,3 +562,37 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .spray-in, .reveal, .reveal-slap { opacity: 1; transform: none; filter: none; -webkit-mask-image: none; mask-image: none; }
 }
+
+/* ---------- Retrato do Erick (quem tatua) ---------- */
+.retrato { position: relative; margin: 0; border: 3px solid var(--cal); background: var(--asfalto-3); }
+.retrato img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(1) contrast(1.12); transition: filter .8s var(--ease); }
+.retrato:hover img { filter: grayscale(.2) contrast(1.05); }
+.retrato__tag {
+  position: absolute; left: 12px; bottom: -18px; min-width: 56%;
+  background: var(--cal); color: var(--asfalto); border: 2px solid var(--asfalto); box-shadow: 0 0 0 2px var(--cal);
+}
+.retrato__tag small { display: block; background: var(--asfalto); color: var(--cal); font: 700 .56rem/1 var(--f-titulo); letter-spacing: .2em; text-transform: uppercase; padding: 6px 10px 5px; }
+.retrato__tag span { display: block; padding: 6px 12px 4px; font: 400 clamp(2rem, 10vw, 3rem)/1 var(--f-tag); }
+.bio { row-gap: 56px; }
+
+/* ---------- Seção invertida: papel branco, tinta preta ---------- */
+.section--inverse {
+  --cal: #0a0a0a; --acido: #0a0a0a; --cinza: #4a4a4a;
+  --linha: rgba(0, 0, 0, .14); --linha-forte: rgba(0, 0, 0, .3);
+  background: #f2f2f0; color: #0a0a0a;
+}
+.section--inverse ::selection { background: #0a0a0a; color: #f2f2f0; }
+
+/* ---------- Lightbox: contador e setas ---------- */
+.lightbox__bar { justify-content: space-between; align-items: center; }
+.lightbox__count { font: 500 .72rem var(--f-mono); letter-spacing: .12em; color: var(--cinza); }
+.lightbox__nav { display: flex; gap: 8px; }
+.lightbox__arrow {
+  width: 52px; height: 46px; background: transparent; color: var(--cal); border: 1.5px solid var(--linha-forte); border-radius: 0; cursor: pointer;
+  font: 500 1.1rem var(--f-mono); transition: background-color .3s var(--ease), color .3s var(--ease), transform .25s var(--ease);
+}
+.lightbox__arrow:hover { background: var(--cal); color: var(--asfalto); }
+.lightbox__arrow:active { transform: scale(.94); }
+
+/* Destaque em P&B: a palavra de ênfase vira contorno (tinta vazada) */
+.hero__tag .acido, .h-tag .acido { color: transparent; -webkit-text-stroke: 1.6px var(--cal); paint-order: stroke fill; }

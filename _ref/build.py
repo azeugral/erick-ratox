@@ -21,7 +21,6 @@ ICON = {
 NAV = [
     ("index.html", "Início"),
     ("portfolio.html", "Portfólio"),
-    ("rua.html", "Rua"),
     ("cuidados.html", "Cuidados"),
     ("orcamento.html", "Orçamento"),
 ]
@@ -36,7 +35,7 @@ def head(title, desc, path, extra="", base=""):
 {base}  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{title}</title>
   <meta name="description" content="{desc}">
-  <meta name="theme-color" content="#111110">
+  <meta name="theme-color" content="#0a0a0a">
   <link rel="canonical" href="{url}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{title}">
@@ -57,7 +56,7 @@ def head(title, desc, path, extra="", base=""):
 
 
 def header():
-    links = "\n".join(f'        <a class="nav__link" href="{h}">{t}</a>' for h, t in NAV[1:])
+    links = "\n".join(f'        <a class="nav__link" href="{h}">{t}</a>' for h, t in NAV[1:-1])
     menu = "\n".join(f'      <li><a class="menu__link" href="{h}">{t}</a></li>' for h, t in NAV)
     return f"""<body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -75,7 +74,7 @@ def header():
     </a>
     <nav class="nav" aria-label="Principal">
 {links}
-      <a class="btn" data-wa href="#">WhatsApp</a>
+      <a class="btn" href="orcamento.html">Orçamento</a>
     </nav>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">
       <span class="nav-toggle__label">Menu</span><span class="nav-toggle__bars" aria-hidden="true"></span>
@@ -89,7 +88,8 @@ def header():
     </ul>
   </nav>
   <div class="menu__foot">
-    <a class="btn btn--block" data-wa href="#">{ICON['wa']} Chamar no WhatsApp</a>
+    <a class="btn btn--block" href="orcamento.html">Pedir orçamento</a>
+    <a data-wa href="#">WhatsApp (71) 98294-9726</a>
     <a href="https://www.instagram.com/erick_ratox/" target="_blank" rel="noopener">@erick_ratox</a>
     <a href="https://www.instagram.com/rapaduraink/" target="_blank" rel="noopener">@rapaduraink · Stella Maris, Salvador</a>
   </div>
@@ -128,7 +128,7 @@ def footer():
     </div>
   </div>
 </footer>
-<a class="wa-float" data-wa href="#" aria-label="Chamar o Erick no WhatsApp">{ICON['wa']}</a>
+<a class="orc-float" href="orcamento.html">Orçamento</a>
 <script src="js/main.js?v={VER}" defer></script>
 </body>
 </html>
@@ -155,11 +155,9 @@ JSONLD = """  <script type="application/ld+json">
 
 PAGES_META = {
     "index.html": ("Erick Ratox | Tatuador em Salvador, BA",
-                   "Erick Ratox tatua tribal, preto e cinza e freehand no Rapadura Ink Studio, em Stella Maris, Salvador. Premiado na Tattoo Week. Graffiti, break e roupas também."),
+                   "Erick Ratox tatua tribal, preto e cinza e freehand no Rapadura Ink Studio, em Stella Maris, Salvador. Premiado na Tattoo Week."),
     "portfolio.html": ("Portfólio | Erick Ratox, tatuador em Salvador",
                        "Fechamentos de braço, costas e perna em tribal, preto e cinza, linhas e freehand. Trabalhos do Erick Ratox no Rapadura Ink Studio."),
-    "rua.html": ("Rua | Graffiti, break e roupas do Erick Ratox",
-                 "Tattoo é uma das coisas que o Erick Ratox faz. Graffiti, break, roupas, podcast e tudo que as ruas têm a oferecer."),
     "orcamento.html": ("Orçamento | Erick Ratox, tatuador em Salvador",
                        "Manda a ideia, a região do corpo e o tamanho. O orçamento sai pelo WhatsApp do Erick Ratox."),
     "cuidados.html": ("Cuidados com a tattoo | Erick Ratox",
@@ -168,9 +166,24 @@ PAGES_META = {
 }
 
 
+def portfolio_grid():
+    import json
+    itens = json.loads((ROOT / "_ref" / "portfolio.json").read_text(encoding="utf-8"))
+    out = []
+    for slug, cats, cap in itens:
+        alt = cap.replace(" · ", ", ")
+        out.append(
+            f'      <a class="work" href="assets/img/port/{slug}.webp" data-lightbox data-cat="{cats}" data-title="{cap}">'
+            f'<img src="assets/img/port/{slug}-t.webp" data-full="assets/img/port/{slug}.webp" alt="Tatuagem de Erick Ratox: {alt}" loading="lazy" width="560" height="700">'
+            f'<span class="work__cap">{cap}</span></a>'
+        )
+    return "\n".join(out)
+
+
 def build():
     for name, (title, desc) in PAGES_META.items():
         body = (PAGES / name).read_text(encoding="utf-8")
+        body = body.replace("{{portfolio}}", portfolio_grid())
         for k, v in ICON.items():
             body = body.replace("{{" + k + "}}", v)
         extra = JSONLD if name == "index.html" else ""

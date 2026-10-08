@@ -11,7 +11,7 @@
     // Upload da foto de referência (preset unsigned do Cloudinary). Vazio = a foto é copiada pra colar no chat.
     cloudinaryCloud: "",
     cloudinaryPreset: "",
-    sprayColor: "200, 240, 49",
+    sprayColor: "245, 245, 245",
   };
   window.RATOX = CONFIG;
 
@@ -58,9 +58,10 @@
     revealEls.forEach((el) => el.classList.add("is-in"));
   }
 
-  /* ---------- WhatsApp flutuante: aparece depois do hero ---------- */
-  const wa = document.querySelector(".wa-float");
-  if (wa) {
+  /* ---------- Orçamento flutuante: aparece depois do hero (some na própria página) ---------- */
+  const wa = document.querySelector(".orc-float");
+  if (wa && here === "orcamento.html") wa.remove();
+  else if (wa) {
     const onScroll = () => wa.classList.toggle("is-on", window.scrollY > window.innerHeight * 0.6);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -78,11 +79,17 @@
     let last = null;
 
     const size = () => {
+      // Largura útil sem a barra de rolagem (é o que o .muro fixo ocupa). O tamanho em CSS
+      // é fixado em pixels iguais ao buffer / dpr: assim o ponto pintado cai exatamente sob o cursor.
+      const vw = document.documentElement.clientWidth;
       // no celular a barra de endereço muda a altura: só redimensiona quando a largura muda
-      if (window.innerWidth === lastW && w) return;
-      lastW = window.innerWidth;
-      w = cv.width = Math.round(window.innerWidth * dpr);
-      h = cv.height = Math.round(Math.max(window.innerHeight, screen.height || 0) * dpr);
+      if (vw === lastW && w) return;
+      lastW = vw;
+      const vh = Math.max(window.innerHeight, screen.height || 0);
+      w = cv.width = Math.round(vw * dpr);
+      h = cv.height = Math.round(vh * dpr);
+      cv.style.width = `${vw}px`;
+      cv.style.height = `${vh}px`;
     };
     size();
     window.addEventListener("resize", size);
@@ -201,27 +208,41 @@
     if (pre) document.querySelector(`.filter[data-filter="${CSS.escape(pre)}"]`)?.click();
   }
 
-  /* ---------- Portfólio: lightbox (vídeos abrem direto no Instagram) ---------- */
+  /* ---------- Portfólio: lightbox com anterior / próxima (setas, teclado e swipe) ---------- */
   const lb = document.querySelector(".lightbox");
   if (lb) {
     const img = lb.querySelector(".lightbox__img img");
     const title = lb.querySelector("[data-lb-title]");
-    const desc = lb.querySelector("[data-lb-desc]");
     const quote = lb.querySelector("[data-lb-quote]");
-    const ig = lb.querySelector("[data-lb-ig]");
-    document.querySelectorAll(".grid-port .work[data-lightbox]").forEach((wk) => {
-      wk.addEventListener("click", (e) => {
-        e.preventDefault();
-        const src = wk.querySelector("img");
-        img.src = src.dataset.full || src.currentSrc || src.src;
-        img.alt = src.alt;
-        title.textContent = wk.dataset.title || "";
-        desc.textContent = wk.dataset.desc || "";
-        quote.href = `orcamento.html?ref=${encodeURIComponent(wk.dataset.title || "")}`;
-        if (wk.dataset.ig) { ig.href = wk.dataset.ig; ig.hidden = false; } else ig.hidden = true;
-        lb.showModal();
-      });
+    const count = lb.querySelector("[data-lb-count]");
+    const works = [...document.querySelectorAll(".grid-port .work[data-lightbox]")];
+    let cur = 0;
+    const visiveis = () => works.filter((w) => !w.classList.contains("is-hidden"));
+    const show = (wk, dir = 0) => {
+      const src = wk.querySelector("img");
+      img.src = src.dataset.full || src.currentSrc || src.src;
+      img.alt = src.alt;
+      title.textContent = wk.dataset.title || "";
+      quote.href = `orcamento.html?ref=${encodeURIComponent(wk.dataset.title || "")}`;
+      const vis = visiveis();
+      cur = vis.indexOf(wk);
+      if (count) count.textContent = `${cur + 1} / ${vis.length}`;
+      if (dir && !reduceMotion) img.animate([{ opacity: 0, transform: `translateX(${dir * 24}px)` }, { opacity: 1, transform: "none" }], { duration: 380, easing: "cubic-bezier(.16,.84,.32,1)" });
+    };
+    const step = (d) => { const vis = visiveis(); if (vis.length) show(vis[(cur + d + vis.length) % vis.length], d); };
+    works.forEach((wk) => {
+      wk.addEventListener("click", (e) => { e.preventDefault(); show(wk); lb.showModal(); });
     });
+    lb.querySelector("[data-lb-prev]")?.addEventListener("click", () => step(-1));
+    lb.querySelector("[data-lb-next]")?.addEventListener("click", () => step(1));
+    lb.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); });
+    let x0 = null;
+    lb.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+    }, { passive: true });
     lb.querySelector(".lightbox__close").addEventListener("click", () => lb.close());
     lb.addEventListener("click", (e) => { if (e.target === lb || e.target.classList.contains("lightbox__img")) lb.close(); });
   }
