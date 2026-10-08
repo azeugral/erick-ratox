@@ -54,6 +54,8 @@
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
     revealEls.forEach((el) => io.observe(el));
+    // rede de segurança: o que já está na tela nunca fica invisível se o observer atrasar
+    setTimeout(() => revealEls.forEach((el) => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("is-in"); }), 1200);
   } else {
     revealEls.forEach((el) => el.classList.add("is-in"));
   }

@@ -596,3 +596,11 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 
 /* Destaque em P&B: a palavra de ênfase vira contorno (tinta vazada) */
 .hero__tag .acido, .h-tag .acido { color: transparent; -webkit-text-stroke: 1.6px var(--cal); paint-order: stroke fill; }
+
+/* Fontes cortadas: acentos, cedilhas e pontas da Sedgwick saem da caixa da linha.
+   A máscara do spray-in só pinta dentro da caixa, então ela ganha folga (padding)
+   compensada com margem negativa: o layout não muda e nada é cortado. */
+.spray-in { padding: .3em .12em .32em; margin: -.3em -.12em -.32em; }
+.h-tag, .hero__tag, .page-head .h-tag, .manifesto, .quote, .menu__link, .retrato__tag span, .estilo__tag span, .premio__pos, .nf .h-tag { line-height: 1.12; }
+.estilo__tag span { padding-top: 8px; padding-bottom: 6px; }
+.retrato img, .retrato:hover img { filter: none; }
