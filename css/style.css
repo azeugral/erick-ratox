@@ -27,13 +27,13 @@
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); }
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); }
 body {
   margin: 0;
   background: var(--asfalto);
   color: var(--cal);
   font: 400 1rem/1.6 var(--f-corpo);
-  overflow-x: hidden;
+  overflow-x: hidden; overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 img { display: block; max-width: 100%; height: auto; }
@@ -196,7 +196,7 @@ p { margin: 0 0 1em; }
 
 /* ---------- Hero ---------- */
 .hero { padding: 28px 0 56px; text-align: center; position: relative; }
-.hero__logo { margin: 8px auto 0; width: min(92%, 520px); }
+.hero__logo { margin: 8px auto 0; width: min(92%, 520px, calc(60vh * 1.21)); width: min(92%, 520px, calc(60svh * 1.21)); }
 .hero__logo img { width: 100%; height: auto; filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .55)); }
 .slap { animation: slap .9s var(--ease) both; animation-delay: .15s; }
 @keyframes slap {

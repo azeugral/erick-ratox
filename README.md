@@ -6,19 +6,19 @@ HTML, CSS e JS puros, sem dependências. Publicado no GitHub Pages: https://azeu
 ## Estrutura
 
 - `_ref/build.py` gera as páginas: head, header, menu, muro, footer e scripts são compartilhados. Edite o miolo em `_ref/pages/*.html` e rode `python _ref/build.py`.
-- `css/style.css` tem os tokens no topo: asfalto `#111110`, cal `#f4f1e8` e verde-ácido de spray `#c8f031`.
+- `css/style.css` tem os tokens no topo: preto `#0a0a0a` e branco `#f2f2f0`/`#ffffff` (P&B forte; o token `--acido` hoje é o branco de destaque). A seção de prêmios é invertida (papel branco).
 - `js/main.js` tem o `CONFIG` no topo: WhatsApp, Instagram e o Cloudinary (opcional).
 - Fontes: Sedgwick Ave Display (títulos em graffiti), Unbounded, IBM Plex Sans e JetBrains Mono.
-- Logo: o original está em `assets/brand/`. Em `assets/img/` ficam a versão com o miolo cal (`logo-ratox`) e a versão com a faixa verde-ácido (`logo-ratox-acid`).
+- Logo: o original está em `assets/brand/`. Em `assets/img/logo-ratox*` fica a versão oficial com o miolo branco.
+- Prévia de link (WhatsApp/Instagram): `assets/img/og.jpg`, gerada por `_ref/og.py`.
 - O fundo é o muro: concreto em SVG com tags apagadas e um canvas de spray que segue o dedo ou o mouse, com a tinta escorrendo.
 
 ## Páginas
 
 | Página | Conteúdo |
 |---|---|
-| `index.html` | Hero com o adesivo, crachá "Hello, meu nome é Ratox", estilos, prêmios, rua, estúdio e chamada final |
-| `portfolio.html` | Filtros (tribal, preto e cinza, linhas, freehand, reforma), lightbox e reels que abrem no Instagram |
-| `rua.html` | Manifesto, graffiti, break, roupas e produtos, podcast |
+| `index.html` | Hero com o adesivo, foto do Erick com crachá "Hello, meu nome é Ratox", estilos, prêmios, estúdio e chamada final |
+| `portfolio.html` | 46 fotos do zip (lista em `_ref/portfolio.json`: arquivo, filtros, legenda), filtros e lightbox com setas e swipe |
 | `orcamento.html` | Formulário que monta a mensagem e abre o WhatsApp, mais as dúvidas frequentes |
 | `cuidados.html` | Cuidados com a tattoo |
 | `404.html` | Página de erro |
@@ -34,13 +34,11 @@ HTML, CSS e JS puros, sem dependências. Publicado no GitHub Pages: https://azeu
 
 ## CONFIRMAR antes de publicar de verdade
 
-- [ ] **Portfólio**: as fotos em `assets/img/port/` são miniaturas de 640px tiradas do Instagram, só para a prévia. Trocar pelas do zip.
-- [ ] Foto do Erick e do estúdio (hoje há placeholders listrados).
+- [x] Portfólio e estilos com as fotos do zip; foto do Erick em "Quem tatua".
+- [ ] Revisar a categoria (filtro) de cada foto em `_ref/portfolio.json`.
+- [ ] Foto do estúdio (placeholder listrado).
 - [ ] Endereço completo e horário do Rapadura Ink.
 - [ ] Tattoo Week RJ: categoria e ano do prêmio.
-- [ ] Break: grupo, eventos, foto ou vídeo.
-- [ ] Podcast: nome, link e capa.
-- [ ] Produtos: o que está à venda, preços e fotos (camiseta? isqueiro?).
 - [ ] Valor mínimo e regra de sinal.
 - [ ] Cuidados: curativo, pomada e hidratante que o Erick indica.
 - [ ] Domínio próprio: trocar o `BASE` em `_ref/build.py` e o `<base>` do 404, criar o `CNAME` e atualizar o `sitemap.xml` e o `robots.txt`.
