@@ -1,0 +1,135 @@
+<section class="page-head">
+  <div class="wrap">
+    <p class="label">Agenda aberta</p>
+    <h1 class="h-tag spray-in">Orçamento</h1>
+    <p class="lead">Preenche aqui e o site monta a mensagem pronta no WhatsApp do Erick. Leva um minuto.</p>
+  </div>
+</section>
+
+<section class="section--tight" style="padding-top:0">
+  <div class="wrap orc">
+    <form class="form" id="form-orcamento" novalidate>
+      <div class="field">
+        <label for="nome">Seu nome</label>
+        <input class="input" id="nome" name="nome" type="text" autocomplete="name" required placeholder="Como o Erick te chama">
+        <span class="field__err">Fala teu nome.</span>
+      </div>
+
+      <div class="field">
+        <label for="ideia">A ideia</label>
+        <textarea class="textarea" id="ideia" name="ideia" required placeholder="Ex.: fechamento de braço em tribal, puxando pro ombro"></textarea>
+        <span class="field__err">Conta um pouco da ideia.</span>
+      </div>
+
+      <fieldset class="field">
+        <legend>Estilo</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="estilo" value="Tribal"><span>Tribal</span></label>
+          <label class="chip"><input type="radio" name="estilo" value="Preto e cinza"><span>Preto e cinza</span></label>
+          <label class="chip"><input type="radio" name="estilo" value="Linhas / geométrico"><span>Linhas / geométrico</span></label>
+          <label class="chip"><input type="radio" name="estilo" value="Freehand"><span>Freehand</span></label>
+          <label class="chip"><input type="radio" name="estilo" value="Reforma / cobertura"><span>Reforma</span></label>
+          <label class="chip"><input type="radio" name="estilo" value="Ainda não sei"><span>Não sei ainda</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="regiao">Região do corpo</label>
+        <input class="input" id="regiao" name="regiao" type="text" required placeholder="Braço, perna, costas, costela...">
+        <span class="field__err">Onde vai ser a tattoo?</span>
+      </div>
+
+      <fieldset class="field">
+        <legend>Tamanho</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="tamanho" value="Pequena (até 10 cm)"><span>Até 10 cm</span></label>
+          <label class="chip"><input type="radio" name="tamanho" value="Média (10 a 20 cm)"><span>10 a 20 cm</span></label>
+          <label class="chip"><input type="radio" name="tamanho" value="Grande (mais de 20 cm)"><span>+20 cm</span></label>
+          <label class="chip"><input type="radio" name="tamanho" value="Fechamento (braço, perna ou costas)"><span>Fechamento</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>É sua primeira tattoo?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="pele" value="Sim"><span>Sim</span></label>
+          <label class="chip"><input type="radio" name="pele" value="Não"><span>Não</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="periodo">Melhor período <small>(opcional)</small></label>
+        <input class="input" id="periodo" name="periodo" type="text" placeholder="Ex.: fim de semana, novembro">
+      </div>
+
+      <div class="field upload" data-upload>
+        <span class="field__label">Referência <small>(opcional)</small></span>
+        <label class="upload__zone">
+          <input class="upload__input" type="file" accept="image/*">
+          <b>Escolher uma foto</b>
+          <span>Desenho, referência ou foto do local</span>
+        </label>
+        <div class="upload__preview" hidden>
+          <img src="" alt="Referência escolhida">
+          <span class="upload__name"></span>
+          <button class="upload__remove" type="button">Tirar</button>
+        </div>
+      </div>
+
+      <p class="form__hint" data-hint hidden></p>
+      <button class="btn btn--block" type="submit">{{wa}} Enviar no WhatsApp</button>
+    </form>
+
+    <aside>
+      <div class="aside-card">
+        <p class="label">Como funciona</p>
+        <ol class="passos">
+          <li>Você manda a ideia por aqui.</li>
+          <li>O Erick responde com valor e datas livres.</li>
+          <li>Sinal pra reservar a data: <span class="preencher">a preencher</span></li>
+          <li>Sessão no Rapadura Ink, em Stella Maris.</li>
+        </ol>
+      </div>
+      <div class="aside-card">
+        <p class="label">Prefere conversar?</p>
+        <p class="muted">Chama direto no WhatsApp (71) 98294-9726.</p>
+        <a class="btn btn--ghost btn--block" data-wa href="#">Abrir conversa</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Antes de marcar</p>
+      <h2 class="h-tag spray-in">Dúvidas</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Quanto custa uma tattoo?</summary>
+        <div class="faq__a"><p>Depende do tamanho, da região e do tempo de sessão. O valor sai no WhatsApp depois que o Erick vê a ideia. Valor mínimo: <span class="preencher">a preencher</span></p></div>
+      </details>
+      <details>
+        <summary>Ele faz fechamento de braço, perna e costas?</summary>
+        <div class="faq__a"><p>Faz. Boa parte do portfólio é fechamento em tribal e preto e cinza, dividido em sessões.</p></div>
+      </details>
+      <details>
+        <summary>Dá pra reformar ou cobrir uma tattoo antiga?</summary>
+        <div class="faq__a"><p>Dá. Manda uma foto da tattoo atual junto com a ideia e ele avalia o que é possível.</p></div>
+      </details>
+      <details>
+        <summary>Ele tatua pele preta?</summary>
+        <div class="faq__a"><p>Tatua, e tem fechamento em pele preta no portfólio. O desenho é pensado pro tom de pele de quem vai usar.</p></div>
+      </details>
+      <details>
+        <summary>Posso levar uma ideia de outro tatuador?</summary>
+        <div class="faq__a"><p>Pode levar como referência. A peça final é desenhada do zero pra você.</p></div>
+      </details>
+      <details>
+        <summary>Onde fica o estúdio?</summary>
+        <div class="faq__a"><p>No Rapadura Ink Studio, em Stella Maris, Salvador. Endereço completo: <span class="preencher">a preencher</span></p></div>
+      </details>
+    </div>
+  </div>
+</section>
