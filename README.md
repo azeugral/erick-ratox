@@ -36,7 +36,7 @@ HTML, CSS e JS puros, sem dependências. Publicado no GitHub Pages: https://azeu
 
 - [x] Portfólio e estilos com as fotos do zip; foto do Erick em "Quem tatua".
 - [ ] Revisar a categoria (filtro) de cada foto em `_ref/portfolio.json`.
-- [ ] Foto do estúdio (placeholder listrado).
+- [x] Foto do estúdio (fachada, enviada em 12/10).
 - [ ] Endereço completo e horário do Rapadura Ink.
 - [ ] Tattoo Week RJ: categoria e ano do prêmio.
 - [ ] Valor mínimo e regra de sinal.

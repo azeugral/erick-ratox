@@ -604,3 +604,9 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .h-tag, .hero__tag, .page-head .h-tag, .manifesto, .quote, .menu__link, .retrato__tag span, .estilo__tag span, .premio__pos, .nf .h-tag { line-height: 1.12; }
 .estilo__tag span { padding-top: 8px; padding-bottom: 6px; }
 .retrato img, .retrato:hover img { filter: none; }
+
+/* Foto do estúdio: no celular corta o céu (quadrado, foco na fachada); no desktop acompanha a altura do card */
+.estudio__media { aspect-ratio: 1; background: var(--asfalto-3); }
+.estudio__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 72%; transition: transform .9s var(--ease); }
+.estudio__media:hover img { transform: scale(1.04); }
+@media (min-width: 900px) { .estudio__media { aspect-ratio: auto; min-height: 480px; } }
